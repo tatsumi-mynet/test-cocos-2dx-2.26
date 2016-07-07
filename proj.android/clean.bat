@@ -1,0 +1,1 @@
+ant clean -Dsdk.dir=C:\Android\sdk
