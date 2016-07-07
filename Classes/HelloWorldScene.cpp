@@ -73,9 +73,57 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(pSprite, 0);
     
+	// aaaa
+	CCSprite* pCircleSprite = CCSprite::create("circle.png");
+
+	pCircleSprite->setPosition(ccp(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	// add the sprite as a child to this layer
+	this->addChild(pCircleSprite, 2);
+
+	//aaa
+//	for (int i = 1; i <= 1; i++)
+//	{
+//		CCSprite *sp = CCSprite::createWithTexture(pcircle->getTexture(), CCRectMake(0, 0, 200,200));
+//		sp->setPositionX(0);
+//		sp->setPositionY(0);
+//		pcircle->addChild(sp,3);
+//	}
+	// position the sprite on the center of the screen
+	CCLOG("LogView");
+
     return true;
 }
 
+void HelloWorld::Play()
+{
+	this->scheduleUpdate();
+	this->schedule(schedule_selector(HelloWorld::nextFrame));
+	this->setTouchEnabled(true);
+}
+
+void HelloWorld::onEnter()
+{
+	CCLayer::onEnter();
+	this->Play();
+}
+
+void HelloWorld::onExit()
+{
+	CCLayer::onExit();
+	this->unscheduleAllSelectors();
+	this->cleanup();
+}
+
+void HelloWorld::nextFrame(float dt)
+{
+	//CCLOG("UpdateFrame:%f",dt);
+	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+//	this->pcircle->setPosition(ccp(this->pcircle->getPosition().x + 5, this->pcircle->getPositionY()));
+//	if (this->pcircle->getPosition().x > visibleSize.width)
+//	{
+//		this->pcircle->setPosition(ccp(0, this->pcircle->getPositionY()));
+//	}
+}
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
